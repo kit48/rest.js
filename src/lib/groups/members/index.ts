@@ -1,5 +1,15 @@
-import request from '../../utils/request';
-import { Groups } from '../../enums';
+import request from '../../../utils/request';
+
+const API = 'http://h5.snh48.com/resource/jsonp/members.php';
+
+export enum Groups {
+  ALL = '00',
+  SNH48 = '10',
+  BEJ48 = '20',
+  GNZ48 = '30',
+  SHY48 = '40',
+  CKG48 = '50',
+}
 
 export interface Response<T> {
   total: string;
@@ -41,10 +51,14 @@ export interface Member {
   weibo_verifier: string;
 }
 
-export default (group: Groups) => {
-  return request.get<Response<Member[]>>('http://h5.snh48.com/resource/jsonp/members.php', {
+const members = (group: Groups) => {
+  return request.get<Response<Member[]>>(API, {
     params: {
       gid: group,
     },
   });
 };
+
+members.Groups = Groups;
+
+export default members;
