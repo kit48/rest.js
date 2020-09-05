@@ -1,4 +1,4 @@
-import * as groups from './lib/groups';
+import * as groups from './lib/groups/index';
 
 const kit48 = {
   groups,
